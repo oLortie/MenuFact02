@@ -1,6 +1,7 @@
 package menufact.facture;
 
 import menufact.Client;
+import menufact.facture.Etats.*;
 import menufact.facture.exceptions.FactureException;
 import menufact.plats.PlatChoisi;
 
@@ -15,7 +16,7 @@ import java.util.Date;
 public class Facture {
     private Date date;
     private String description;
-    private FactureEtat etat;
+    private EtatFacture etat;
     private ArrayList<PlatChoisi> platchoisi = new ArrayList<PlatChoisi>();
     private int courant;
     private Client client;
@@ -75,14 +76,22 @@ public class Facture {
      */
     public void payer()
     {
-       etat = FactureEtat.PAYEE;
+        try {
+            etat.payer();
+        } catch (FactureException e) {
+            e.printStackTrace();
+        }
     }
     /**
      * Permet de chager l'état de la facture à FERMEE
      */
     public void fermer()
     {
-       etat = FactureEtat.FERMEE;
+        try {
+            etat.fermer();
+        } catch (FactureException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -91,19 +100,20 @@ public class Facture {
      */
     public void ouvrir() throws FactureException
     {
-        if (etat == FactureEtat.PAYEE)
-            throw new FactureException("La facture ne peut pas être reouverte.");
-        else
-            etat = FactureEtat.OUVERTE;
+        etat.ouvrir();
     }
 
     /**
      *
      * @return l'état de la facture
      */
-    public FactureEtat getEtat()
+    public EtatFacture getEtat()
     {
         return etat;
+    }
+
+    public void setEtat(EtatFacture newEtat) {
+        this.etat = newEtat;
     }
 
     /**
@@ -112,7 +122,7 @@ public class Facture {
      */
     public Facture(String description) {
         date = new Date();
-        etat = FactureEtat.OUVERTE;
+        etat = new EtatFactureOuverte(this);
         courant = -1;
         this.description = description;
     }
@@ -124,7 +134,7 @@ public class Facture {
      */
     public void ajoutePlat(PlatChoisi p) throws FactureException
     {
-        if (etat == FactureEtat.OUVERTE)
+        if (etat.getEtat() == FactureEtat.OUVERTE)
             platchoisi.add(p);
         else
             throw new FactureException("On peut ajouter un plat seulement sur une facture OUVERTE.");
@@ -139,7 +149,7 @@ public class Facture {
         return "menufact.facture.Facture{" +
                 "date=" + date +
                 ", description='" + description + '\'' +
-                ", etat=" + etat +
+                ", etat=" + etat.getEtat() +
                 ", platchoisi=" + platchoisi +
                 ", courant=" + courant +
                 ", client=" + client +
