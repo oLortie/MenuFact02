@@ -1,5 +1,8 @@
 package inventaire;
 
+import Iterateur.Containeur;
+import Iterateur.Iterateur;
+import Iterateur.IterateurInventaire;
 import ingredients.Ingredient;
 import ingredients.IngredientInventaire;
 import ingredients.TypeIngredient;
@@ -7,7 +10,7 @@ import ingredients.exceptions.IngredientException;
 
 import java.util.ArrayList;
 
-public class Inventaire {
+public class Inventaire implements Containeur {
     private ArrayList<IngredientInventaire> lesIngredients;
     private static Inventaire instanceInventaire;
 
@@ -50,5 +53,17 @@ public class Inventaire {
         }
 
         return instanceInventaire;
+    }
+
+    public Iterateur createIterateur()
+    {
+        IterateurInventaire iterateur = new IterateurInventaire();
+
+        while(iterateur.isFinished())
+        {
+
+        }
+
+        return iterateur; // TODO implementation
     }
 }
