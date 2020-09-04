@@ -5,8 +5,8 @@ import menufact.facture.exceptions.FactureException;
 
 public interface EtatFacture {
 
-    public abstract void ouvrir() throws FactureException;
-    public abstract void fermer() throws FactureException;
-    public abstract void payer() throws FactureException;
-    public abstract FactureEtat getEtat();
+    public void ouvrir() throws FactureException;
+    public void fermer() throws FactureException;
+    public void payer() throws FactureException;
+    public String toString();
 }

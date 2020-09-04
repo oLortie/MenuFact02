@@ -28,7 +28,7 @@ public class EtatFacturePayee implements EtatFacture{
         // ne rien faire, la facture est déjà payée
     }
 
-    public FactureEtat getEtat() {
-        return etat;
+    public String toString() {
+        return etat.toString();
     }
 }

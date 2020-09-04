@@ -27,7 +27,7 @@ public class EtatFactureOuverte implements EtatFacture{
         facture.setEtat(new EtatFacturePayee(facture));
     }
 
-    public FactureEtat getEtat() {
-        return etat;
+    public String toString() {
+        return etat.toString();
     }
 }

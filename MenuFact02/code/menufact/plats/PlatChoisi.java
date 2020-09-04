@@ -1,14 +1,18 @@
 package menufact.plats;
 
+import menufact.plats.Etats.EtatPlat;
+import menufact.plats.Etats.EtatPlatCommande;
 import menufact.plats.PlatAuMenu;
 
 public class PlatChoisi {
     private PlatAuMenu plat;
     private int quantite;
+    private EtatPlat etat;
 
     public PlatChoisi(PlatAuMenu plat, int quantite) {
         this.plat = plat;
         this.quantite = quantite;
+        this.etat = new EtatPlatCommande(this);
     }
 
     @Override
@@ -29,5 +33,13 @@ public class PlatChoisi {
 
     public PlatAuMenu getPlat() {
         return plat;
+    }
+
+    public EtatPlat getEtat() {
+        return etat;
+    }
+
+    public void setEtat(EtatPlat newEtat) {
+        this.etat = newEtat;
     }
 }

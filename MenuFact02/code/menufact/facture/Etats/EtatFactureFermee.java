@@ -29,7 +29,7 @@ public class EtatFactureFermee implements EtatFacture{
         throw new FactureException("Impossible de payer une facture fermée!");
     }
 
-    public FactureEtat getEtat() {
-        return etat;
+    public String toString() {
+        return etat.toString();
     }
 }
