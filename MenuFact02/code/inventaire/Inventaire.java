@@ -66,4 +66,8 @@ public class Inventaire implements Containeur {
 
         return iterateur; // TODO implementation
     }
+
+    public ArrayList<IngredientInventaire> getIngredients() {
+        return lesIngredients;
+    }
 }
