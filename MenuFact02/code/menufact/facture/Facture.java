@@ -5,6 +5,8 @@ import menufact.chef.Observable;
 import menufact.chef.Observateur;
 import menufact.facture.Etats.*;
 import menufact.facture.exceptions.FactureException;
+import menufact.plats.Exceptions.PlatException;
+import menufact.plats.PlatAuMenu;
 import menufact.plats.PlatChoisi;
 
 import java.util.ArrayList;
@@ -39,9 +41,9 @@ public class Facture implements Observable {
     }
 
     @Override
-    public void notifier() {
+    public void notifier(PlatChoisi plat) throws PlatException {
         for (Observateur observateur : observateurs) {
-            observateur.preparerPlatComplet();
+            observateur.preparerPlatComplet(plat);
         }
     }
 
@@ -61,8 +63,13 @@ public class Facture implements Observable {
     public double sousTotal()
     {
         double soustotal=0;
-         for (PlatChoisi p : platchoisi)
-             soustotal += p.getQuantite() * p.getPlat().getPrix();
+         for (PlatChoisi p : platchoisi) {
+             if (p.getEtat().toString() != "IMPOSSIBLE") {
+                 soustotal += p.getQuantite() * p.getPlat().getPrix();
+             }
+         }
+
+
         return soustotal;
     }
 

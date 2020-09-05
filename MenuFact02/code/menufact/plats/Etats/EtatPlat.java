@@ -7,6 +7,6 @@ public interface EtatPlat {
     public void preparer() throws PlatException;
     public void terminer() throws PlatException;
     public void servir() throws PlatException;
-    public void rendreImpossible() throws PlatException;
+    public void rendreImpossible();
     public String toString();
 }

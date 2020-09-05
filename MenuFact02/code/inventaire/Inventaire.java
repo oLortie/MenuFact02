@@ -51,4 +51,8 @@ public class Inventaire {
 
         return instanceInventaire;
     }
+
+    public ArrayList<IngredientInventaire> getIngredients() {
+        return lesIngredients;
+    }
 }

@@ -2,6 +2,7 @@ package menufact.plats;
 
 import menufact.plats.Etats.EtatPlat;
 import menufact.plats.Etats.EtatPlatCommande;
+import menufact.plats.Exceptions.PlatException;
 import menufact.plats.PlatAuMenu;
 
 public class PlatChoisi {
@@ -13,6 +14,31 @@ public class PlatChoisi {
         this.plat = plat;
         this.quantite = quantite;
         this.etat = new EtatPlatCommande(this);
+    }
+
+    public void commander() throws PlatException {
+        etat.commander();
+        System.out.println("Le plat est commandé...");
+    }
+
+    public void preparer() throws PlatException {
+        etat.preparer();
+        System.out.println("Preparation du plat...");
+    }
+
+    public void terminer() throws PlatException {
+        etat.terminer();
+        System.out.println("Le plat est terminé...");
+    }
+
+    public void servir() throws PlatException {
+        etat.servir();
+        System.out.println("Le plat est servi...");
+    }
+
+    public void rendreImpossible(){
+        etat.rendreImpossible();
+        System.out.println("Le plat est impossible à commander..");
     }
 
     @Override

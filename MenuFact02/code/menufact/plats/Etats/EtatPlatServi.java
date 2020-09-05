@@ -34,8 +34,8 @@ public class EtatPlatServi implements EtatPlat{
     }
 
     @Override
-    public void rendreImpossible() throws PlatException{
-        throw new PlatException("Les ingrédients auraient du être vérifiés avant de servir!");
+    public void rendreImpossible() {
+        plat.setEtat(new EtatPlatImpossible(plat));
     }
 
     public String toString() {
