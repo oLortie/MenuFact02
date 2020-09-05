@@ -1,5 +1,6 @@
 package menufact;
 
+import Iterateur.Iterateur;
 import ingredients.Fruit;
 import ingredients.Ingredient;
 import ingredients.IngredientInventaire;
@@ -12,6 +13,7 @@ import menufact.plats.PlatChoisi;
 
 public class TestMenuFact03 {
     public static void main(String[] args) {
+
 
         Chef chef = new Chef();
 
@@ -33,7 +35,7 @@ public class TestMenuFact03 {
         plat1.ajouterIngredient(plat1BananeInventaire);
         plat1.ajouterIngredient(plat1CremeGlaceeInventaire);
 
-        PlatChoisi platChoisi = new PlatChoisi(plat1, 1);
+        PlatChoisi platChoisi = new PlatChoisi(plat1, 6);
 
         try {
             chef.preparerPlatComplet(platChoisi);
@@ -42,5 +44,6 @@ public class TestMenuFact03 {
         }
 
         System.out.println(platChoisi.getEtat().toString());
+
     }
 }

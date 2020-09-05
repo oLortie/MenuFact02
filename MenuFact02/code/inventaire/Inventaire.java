@@ -2,10 +2,7 @@ package inventaire;
 
 import Iterateur.Containeur;
 import Iterateur.Iterateur;
-import Iterateur.IterateurInventaire;
-import ingredients.Ingredient;
 import ingredients.IngredientInventaire;
-import ingredients.TypeIngredient;
 import ingredients.exceptions.IngredientException;
 
 import java.util.ArrayList;
@@ -55,19 +52,43 @@ public class Inventaire implements Containeur {
         return instanceInventaire;
     }
 
-    public Iterateur createIterateur()
-    {
-        IterateurInventaire iterateur = new IterateurInventaire();
-
-        while(iterateur.isFinished())
-        {
-
-        }
-
-        return iterateur; // TODO implementation
-    }
 
     public ArrayList<IngredientInventaire> getIngredients() {
         return lesIngredients;
+    }
+
+    public Iterateur creerIterateur()
+    {
+        IterateurInventaire result = new IterateurInventaire();
+        return result;
+    }
+
+    public class IterateurInventaire implements Iterateur {
+
+        private int currentPosition;
+
+        public IterateurInventaire()
+        {
+            currentPosition = 0;
+        }
+
+        public Object next()
+        {
+            if (!isFinished()) {
+                return lesIngredients.get(currentPosition++);
+            }
+            else
+                return null;
+        }
+
+        public boolean isFinished()
+        {
+            if (this.currentPosition < lesIngredients.size()) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
     }
 }

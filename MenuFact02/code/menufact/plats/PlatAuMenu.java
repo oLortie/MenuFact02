@@ -1,13 +1,16 @@
 package menufact.plats;
 
+import Iterateur.Containeur;
+import Iterateur.Iterateur;
 import ingredients.IngredientInventaire;
 import ingredients.exceptions.IngredientException;
+import inventaire.Inventaire;
 import menufact.plats.Etats.EtatPlat;
 import menufact.plats.Etats.EtatPlatCommande;
 
 import java.util.ArrayList;
 
-public class PlatAuMenu {
+public class PlatAuMenu implements Containeur {
     private int code;
     private String description;
     private double prix;
@@ -73,5 +76,36 @@ public class PlatAuMenu {
 
     public void setPrix(double prix) {
         this.prix = prix;
+    }
+
+    @Override
+    public Iterateur creerIterateur()
+    {
+        IterateurPlatAuMenu result = new IterateurPlatAuMenu();
+        return result;
+    }
+
+    public class IterateurPlatAuMenu implements Iterateur {
+
+        private int currentPosition;
+
+        public IterateurPlatAuMenu() {
+            currentPosition = 0;
+        }
+
+        public Object next() {
+            if (!isFinished()) {
+                return lesIngredients.get(currentPosition++);
+            } else
+                return null;
+        }
+
+        public boolean isFinished() {
+            if (this.currentPosition < lesIngredients.size()) {
+                return false;
+            } else {
+                return true;
+            }
+        }
     }
 }

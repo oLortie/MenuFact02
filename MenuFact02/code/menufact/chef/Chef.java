@@ -1,5 +1,6 @@
 package menufact.chef;
 
+import Iterateur.Iterateur;
 import ingredients.IngredientInventaire;
 import ingredients.exceptions.IngredientException;
 import inventaire.Inventaire;
@@ -45,23 +46,58 @@ public class Chef implements Observateur{
      */
     public void verifierIngredients(PlatChoisi plat) throws PlatException {
 
-        for (IngredientInventaire ingredientDuPlat : plat.getPlat().getIngredients()) {
-            for (IngredientInventaire ingredientDeInventaire : inventaire.getIngredients()) {
+        Iterateur iterateurIngredientsPlat = plat.getPlat().creerIterateur();
+        Iterateur iterateurIngredientsInventaire = Inventaire.getInventaire().creerIterateur();
+
+        while (!iterateurIngredientsPlat.isFinished())
+        {
+            IngredientInventaire ingredientDuPlat = (IngredientInventaire) iterateurIngredientsPlat.next();
+            iterateurIngredientsInventaire = Inventaire.getInventaire().creerIterateur();
+            while(!iterateurIngredientsInventaire.isFinished())
+            {
+                IngredientInventaire ingredientDeInventaire = (IngredientInventaire) iterateurIngredientsInventaire.next();
+
                 if ((ingredientDuPlat.getIngredient().getNom() == ingredientDeInventaire.getIngredient().getNom()) && ingredientDuPlat.getQuantite() * plat.getQuantite() > ingredientDeInventaire.getQuantite()) {
                     throw new PlatException("Impossible de créer le plat, il n'y a pas assez d'ingredients!");
                 }
             }
         }
+
+        /*for (IngredientInventaire ingredientDuPlat : plat.getPlat().getIngredients()) {
+            for (IngredientInventaire ingredientDeInventaire : inventaire.getIngredients()) {
+                if ((ingredientDuPlat.getIngredient().getNom() == ingredientDeInventaire.getIngredient().getNom()) && ingredientDuPlat.getQuantite() * plat.getQuantite() > ingredientDeInventaire.getQuantite()) {
+                    throw new PlatException("Impossible de créer le plat, il n'y a pas assez d'ingredients!");
+                }
+            }
+        }*/
     }
 
     public void enleverIngredients(PlatChoisi plat) throws IngredientException {
-        for (IngredientInventaire ingredientDuPlat : plat.getPlat().getIngredients()) {
-            for (IngredientInventaire ingredientDeInventaire : inventaire.getIngredients()) {
+
+        Iterateur iterateurIngredientsPlat = plat.getPlat().creerIterateur();
+        Iterateur iterateurIngredientsInventaire = Inventaire.getInventaire().creerIterateur();
+
+        while (!iterateurIngredientsPlat.isFinished())
+        {
+            IngredientInventaire ingredientDuPlat = (IngredientInventaire) iterateurIngredientsPlat.next();
+            iterateurIngredientsInventaire = Inventaire.getInventaire().creerIterateur();
+            while(!iterateurIngredientsInventaire.isFinished())
+            {
+                IngredientInventaire ingredientDeInventaire = (IngredientInventaire) iterateurIngredientsInventaire.next();
+
                 if (ingredientDeInventaire.getIngredient().getNom() == ingredientDuPlat.getIngredient().getNom()) {
                     ingredientDeInventaire.setQuantite(ingredientDeInventaire.getQuantite()-ingredientDuPlat.getQuantite());
                 }
             }
         }
+
+        /*for (IngredientInventaire ingredientDuPlat : plat.getPlat().getIngredients()) {
+            for (IngredientInventaire ingredientDeInventaire : inventaire.getIngredients()) {
+                if (ingredientDeInventaire.getIngredient().getNom() == ingredientDuPlat.getIngredient().getNom()) {
+                    ingredientDeInventaire.setQuantite(ingredientDeInventaire.getQuantite()-ingredientDuPlat.getQuantite());
+                }
+            }
+        }*/
     }
 
     public Inventaire getInventaire() {
