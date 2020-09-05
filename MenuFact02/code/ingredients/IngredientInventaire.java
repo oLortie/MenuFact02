@@ -27,4 +27,13 @@ public class IngredientInventaire {
     {
         return ingredient;
     }
+
+    @Override
+    public String toString() {
+        return  "Ingredient{ " +
+                ingredient +
+                ", quantite: " +
+                getQuantite() +
+                " }";
+    }
 }

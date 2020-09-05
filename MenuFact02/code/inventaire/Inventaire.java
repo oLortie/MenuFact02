@@ -4,6 +4,7 @@ import Iterateur.Containeur;
 import Iterateur.Iterateur;
 import ingredients.IngredientInventaire;
 import ingredients.exceptions.IngredientException;
+import inventaire.exceptions.InventaireException;
 
 import java.util.ArrayList;
 
@@ -27,7 +28,7 @@ public class Inventaire implements Containeur {
         {
             String nomIngredient = ingredient.getIngredient().getNom();
 
-            if(nomIngredient == nom)
+            if(nomIngredient.equals(nom))
             {
                 int qty = ingredient.getQuantite();
 
@@ -38,8 +39,7 @@ public class Inventaire implements Containeur {
         }
     }
 
-    public static Inventaire getInventaire()
-    {
+    public static Inventaire getInventaire() {
         if(instanceInventaire == null)
         {
             instanceInventaire = new Inventaire();
@@ -47,11 +47,17 @@ public class Inventaire implements Containeur {
         else
         {
             System.out.println("L'inventaire existe déjà");
+            //throw new InventaireException("L'inventaire existe déjà");
         }
 
         return instanceInventaire;
     }
 
+    public String afficherInventaire()
+    {
+        return  "Inventaire: " +
+                lesIngredients;
+    }
 
     public ArrayList<IngredientInventaire> getIngredients() {
         return lesIngredients;

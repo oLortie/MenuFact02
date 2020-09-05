@@ -28,4 +28,12 @@ public class Ingredient {
     public void setTypeIngredient(TypeIngredient typeIngredient) {
         this.typeIngredient = typeIngredient;
     }
+
+    @Override
+    public String toString() {
+        return  "nom: " +
+                getNom() +
+                ", description: " +
+                getDescription();
+    }
 }
