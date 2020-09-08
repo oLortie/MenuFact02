@@ -71,7 +71,7 @@ public class IngredientInventaire {
      */
     @Override
     public String toString() {
-        return  "Ingredient{ " +
+        return  "\n" + "Ingredient{ " +
                 ingredient +
                 ", quantite: " +
                 getQuantite() +

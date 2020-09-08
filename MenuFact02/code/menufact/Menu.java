@@ -48,10 +48,10 @@ public class Menu {
 
     @Override
     public String toString() {
-        return "menufact.Menu{" +
+        return "Menu{" +
                 "description='" + description + '\'' +
                 ", courant=" + courant +
-                ", plat=" + "\n" + plat +
+                ", plat=" + plat +
                 '}';
     }
 }

@@ -63,11 +63,11 @@ public class PlatAuMenu implements Containeur {
      */
     @Override
     public String toString() {
-        return "menufact.plats.PlatAuMenu{" +
+        return  "\n" + "PlatAuMenu{" +
                 "code=" + code +
-                ", description='" + description + '\'' +
+                ", description='" + description +
                 ", prix=" + prix +
-                "}\n";
+                "}";
     }
 
     /**

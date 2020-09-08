@@ -7,7 +7,9 @@ public class Epice extends Ingredient{
     /**
      * Constructeur par défaut
      */
-    public Epice() {
+    public Epice(String nom, String description) {
         setTypeIngredient(TypeIngredient.EPICE);
+        setNom(nom);
+        setDescription(description);
     }
 }

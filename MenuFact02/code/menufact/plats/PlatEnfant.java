@@ -38,7 +38,7 @@ public class PlatEnfant extends PlatAuMenu{
      */
     @Override
     public String toString() {
-        return "PlatEnfant{" +
+        return  "\n" + "PlatEnfant{" +
                 "proportion=" + proportion +
                 "} " + super.toString();
     }

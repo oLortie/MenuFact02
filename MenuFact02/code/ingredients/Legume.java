@@ -7,7 +7,9 @@ public class Legume extends Ingredient{
     /**
      * Constructeur de la classe
      */
-    public Legume() {
+    public Legume(String nom, String description) {
         setTypeIngredient(TypeIngredient.LEGUME);
+        setNom(nom);
+        setDescription(description);
     }
 }

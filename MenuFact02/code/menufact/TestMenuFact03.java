@@ -5,7 +5,7 @@ import ingredients.Fruit;
 import ingredients.Ingredient;
 import ingredients.IngredientInventaire;
 import ingredients.IngredientInventaireLiquide;
-import ingredients.IngredientInventaireSolideAdapter;
+import ingredients.IngredientInventaireLiquideAdapter;
 import ingredients.Laitier;
 import ingredients.exceptions.IngredientException;
 import inventaire.Inventaire;
@@ -31,7 +31,7 @@ public class TestMenuFact03 {
         IngredientInventaireLiquide inventaireJusDeFruit = new IngredientInventaireLiquide(jusDeFruit, 40);
         IngredientInventaire inventaireBanane = new IngredientInventaire(banane, 4);
 
-        IngredientInventaireSolideAdapter adapter = new IngredientInventaireSolideAdapter(inventaireJusDeFruit, 1.5f);
+        IngredientInventaireLiquideAdapter adapter = new IngredientInventaireLiquideAdapter(inventaireJusDeFruit, 1.5f);
 
         Inventaire.getInventaire().ajouterIngredient(adapter);
         Inventaire.getInventaire().ajouterIngredient(inventaireBanane);
@@ -40,7 +40,7 @@ public class TestMenuFact03 {
         /////////////////////////////////////////////test adapter
 
         // test adapter plat enfant
-        Chef chef = new Chef();
+        /*Chef chef = new Chef();
 
         PlatEnfant plat1 = new PlatEnfant(0, "Banana Split Enfant", 12, 0.5);
         Fruit banane = new Fruit();
@@ -75,7 +75,7 @@ public class TestMenuFact03 {
             System.out.println(e.getMessage());
         }
 
-        System.out.println(platChoisi.getEtat().toString());
+        System.out.println(platChoisi.getEtat().toString());*/
 
 
 

@@ -7,7 +7,9 @@ public class Fruit extends Ingredient{
     /**
      * Constructeur par défaut
      */
-    public Fruit() {
+    public Fruit(String nom, String description) {
         setTypeIngredient(TypeIngredient.FRUIT);
+        setNom(nom);
+        setDescription(description);
     }
 }

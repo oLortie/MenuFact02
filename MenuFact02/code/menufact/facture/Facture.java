@@ -65,9 +65,15 @@ public class Facture implements Observable {
      *
      * @param client le client de la facture
      */
-    public void associerClient (Client client)
+    public void associerClient (Client client) throws FactureException
     {
-        this.client = client;
+        if(etat.toString().equals(FactureEtat.OUVERTE.toString())) {
+            this.client = client;
+        }
+        else
+        {
+            throw new FactureException("Vous ne pouvez pas associer un client a une facture qui nest pas ouverte!");
+        }
     }
 
     /**
@@ -82,7 +88,6 @@ public class Facture implements Observable {
                  soustotal += p.getQuantite() * p.getPlat().getPrix();
              }
          }
-
 
         return soustotal;
     }
@@ -114,24 +119,16 @@ public class Facture implements Observable {
     /**
      * Permet de chager l'état de la facture à PAYEE
      */
-    public void payer()
+    public void payer() throws FactureException
     {
-        try {
-            etat.payer();
-        } catch (FactureException e) {
-            e.printStackTrace();
-        }
+        etat.payer();
     }
     /**
      * Permet de chager l'état de la facture à FERMEE
      */
-    public void fermer()
+    public void fermer() throws FactureException
     {
-        try {
-            etat.fermer();
-        } catch (FactureException e) {
-            e.printStackTrace();
-        }
+        etat.fermer();
     }
 
     /**
@@ -187,7 +184,7 @@ public class Facture implements Observable {
      */
     @Override
     public String toString() {
-        return "menufact.facture.Facture{" +
+        return "Facture{" +
                 "date=" + date +
                 ", description='" + description + '\'' +
                 ", etat=" + etat.toString() +

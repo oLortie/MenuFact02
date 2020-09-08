@@ -7,7 +7,9 @@ public class Laitier extends Ingredient{
     /**
      * Constructeur de la classe
      */
-    public Laitier() {
+    public Laitier(String nom, String description) {
         setTypeIngredient(TypeIngredient.LAITIER);
+        setNom(nom);
+        setDescription(description);
     }
 }

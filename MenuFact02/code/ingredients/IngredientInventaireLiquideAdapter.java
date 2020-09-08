@@ -11,17 +11,9 @@ public class IngredientInventaireLiquideAdapter extends IngredientInventaire{
     private double masseVolumique;
 
     public IngredientInventaireLiquideAdapter(IngredientInventaireLiquide IngredientLiquide, double masseVolumique) {
-        super(IngredientLiquide.getIngredient(), IngredientLiquide.getQuantite());
+        super(IngredientLiquide.getIngredient(), (int)(IngredientLiquide.getQuantite() * masseVolumique));
         this.ingredientLiquide = IngredientLiquide;
         this.masseVolumique = masseVolumique;
-    }
-
-    /**
-     * Obtenir la quantité tranformée en solide à partir de la masse volumique
-     * @return la quantité
-     */
-    public int getQuantite() {
-        return  (int) (this.ingredientLiquide.getQuantite() * masseVolumique);
     }
 
     /**

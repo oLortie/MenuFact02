@@ -7,7 +7,9 @@ public class Viande extends Ingredient{
     /**
      * Constructeur de la classe
      */
-    public Viande() {
+    public Viande(String nom, String description) {
         setTypeIngredient(TypeIngredient.VIANDE);
+        setNom(nom);
+        setDescription(description);
     }
 }
