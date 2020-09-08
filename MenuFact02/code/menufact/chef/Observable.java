@@ -1,5 +1,7 @@
 package menufact.chef;
 
+import ingredients.exceptions.IngredientException;
+import inventaire.exceptions.InventaireException;
 import menufact.plats.Exceptions.PlatException;
 import menufact.plats.PlatAuMenu;
 import menufact.plats.PlatChoisi;
@@ -10,5 +12,5 @@ import menufact.plats.PlatChoisi;
 public interface Observable {
     public void attacher(Observateur observateur);
     public void detacher(Observateur observateur);
-    public void notifier(PlatChoisi plat) throws PlatException;
+    public void notifier(PlatChoisi plat) throws PlatException, IngredientException, InventaireException;
 }

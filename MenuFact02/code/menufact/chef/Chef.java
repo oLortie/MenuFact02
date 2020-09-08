@@ -33,7 +33,7 @@ public class Chef implements Observateur{
      * @param plat le plat qu'on doit préparer
      * @throws PlatException S'il n'y a pas assez d'ingrédients pour préparer le plat
      */
-    public void preparerPlatComplet(PlatChoisi plat) throws PlatException {
+    public void preparerPlatComplet(PlatChoisi plat) throws PlatException, IngredientException, InventaireException {
         try {
             verifierIngredients(plat);
             enleverIngredients(plat);
@@ -42,10 +42,13 @@ public class Chef implements Observateur{
             plat.servir();
         } catch (PlatException e) {
             plat.rendreImpossible();
+            throw new PlatException(e.getMessage());
         } catch (IngredientException e) {
             plat.rendreImpossible();
+            throw new IngredientException(e.getMessage());
         } catch (InventaireException e) {
             plat.rendreImpossible();
+            throw new InventaireException(e.getMessage());
         }
 
     }
