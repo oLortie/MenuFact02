@@ -6,6 +6,7 @@ import menufact.chef.Chef;
 import menufact.facture.exceptions.FactureException;
 import menufact.exceptions.MenuException;
 import menufact.facture.Facture;
+import menufact.plats.Exceptions.PlatException;
 import menufact.plats.PlatAuMenu;
 import menufact.plats.PlatChoisi;
 import menufact.plats.PlatEnfant;
@@ -288,7 +289,7 @@ public class TestMenuFact02 {
         {
             f1.ajoutePlat(pc1);
         }
-        catch(FactureException fe)
+        catch (FactureException | PlatException fe)
         {
             System.out.println(fe.getMessage());
         }
@@ -297,7 +298,7 @@ public class TestMenuFact02 {
         {
             f1.ajoutePlat(pc2);
         }
-        catch(FactureException fe)
+        catch (FactureException | PlatException fe)
         {
             System.out.println(fe.getMessage());
         }
@@ -306,7 +307,7 @@ public class TestMenuFact02 {
         {
             f1.ajoutePlat(pc3);
         }
-        catch(FactureException fe)
+        catch (FactureException | PlatException fe)
         {
             System.out.println(fe.getMessage());
         }
@@ -316,7 +317,7 @@ public class TestMenuFact02 {
             f1.fermer();
             f1.ajoutePlat(pc1);
         }
-        catch(FactureException fe)
+        catch (FactureException | PlatException fe)
         {
             System.out.println(fe.getMessage());
         }
