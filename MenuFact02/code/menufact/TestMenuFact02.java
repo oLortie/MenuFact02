@@ -1,5 +1,6 @@
 package menufact;
 
+import com.sun.source.tree.TryTree;
 import ingredients.*;
 import inventaire.Inventaire;
 import menufact.chef.Chef;
@@ -107,7 +108,7 @@ public class TestMenuFact02 {
 
         t.test8_AjoutDesPlatDuClient(f1, pc1, pc2, pc3);
 
-
+        t.test9_ChangementEtatPlatCommandes();
 
 
         /*t.test1_AffichePlatsAuMenu(trace, p1, p2, p3, p4, p5);
@@ -346,7 +347,21 @@ public class TestMenuFact02 {
         System.out.println("--------------------------------------");
     }
 
+    void test9_ChangementEtatPlatCommandes()
+    {
+        System.out.println("TEST9 - CHANGEMENT DETAT DES PLAT COMMANDES" + "\n");
 
+        try
+        {
+            
+        }
+        catch()
+        {
+
+        }
+
+        System.out.println("--------------------------------------");
+    }
 
 
 
