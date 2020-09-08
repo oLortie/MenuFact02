@@ -46,7 +46,7 @@ public class PlatAuMenu implements Containeur {
      * @return
      * @throws IngredientException
      */
-    public ArrayList<IngredientInventaire> getIngredients() throws IngredientException {
+    public ArrayList<IngredientInventaire> getIngredients() {
         return lesIngredients;
     }
 
