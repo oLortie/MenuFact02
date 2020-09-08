@@ -10,10 +10,19 @@ import menufact.plats.PlatChoisi;
 
 import java.util.ArrayList;
 
+/**
+ * Cette classe permet de créer un chef qui pourra préparer des plats et gérer les ingrédients de l'inventaire.
+ * Cette classe fait partie du design pattern observer.
+ * Le chef est notifié lorsqu'un plat est ajouté à une facture.
+ */
 public class Chef implements Observateur{
     Inventaire inventaire;
 
+    /**
+     * Constructeur par défaut
+     */
     public Chef() {
+        // un seul inventaire, car Singleton
         inventaire = Inventaire.getInventaire();
     }
 
@@ -40,7 +49,8 @@ public class Chef implements Observateur{
     }
 
     /**
-     *
+     * Cette méthode vérifie, pour un plat choisi, s'il y a assez d'ingrédients en inventaire pour le préparer.
+     * Elle utilise les méthodes de l'itérateur de l'inventaire et du plat.
      * @param plat plat pour lequel on doit vérifier la disponibilité des ingrédients
      * @throws PlatException si il n'y a pas assez d'ingrédients
      */
@@ -52,6 +62,11 @@ public class Chef implements Observateur{
         while (!iterateurIngredientsPlat.isFinished())
         {
             IngredientInventaire ingredientDuPlat = (IngredientInventaire) iterateurIngredientsPlat.next();
+
+            if (!ingredientDuPlat.isIn(Inventaire.getInventaire().getIngredients())) {
+                throw new PlatException("Un des ingrédients du plat n'est pas disponible en inventaire!");
+            }
+
             iterateurIngredientsInventaire = Inventaire.getInventaire().creerIterateur();
             while(!iterateurIngredientsInventaire.isFinished())
             {
@@ -62,16 +77,15 @@ public class Chef implements Observateur{
                 }
             }
         }
-
-        /*for (IngredientInventaire ingredientDuPlat : plat.getPlat().getIngredients()) {
-            for (IngredientInventaire ingredientDeInventaire : inventaire.getIngredients()) {
-                if ((ingredientDuPlat.getIngredient().getNom() == ingredientDeInventaire.getIngredient().getNom()) && ingredientDuPlat.getQuantite() * plat.getQuantite() > ingredientDeInventaire.getQuantite()) {
-                    throw new PlatException("Impossible de créer le plat, il n'y a pas assez d'ingredients!");
-                }
-            }
-        }*/
     }
 
+    /**
+     * Cette méthode doit être appelée après avoir vérifié la disponibilité des ingrédients.
+     * Elle permet d'enlever les ingrédients nécessaires pour le plat de l'inventaire.
+     * Elle utilise l'itérateur du plat et de l'inventaire.
+     * @param plat le plat qu'il faut préparer
+     * @throws IngredientException si on tente de mettre une quantité d'ingrédients négative
+     */
     public void enleverIngredients(PlatChoisi plat) throws IngredientException {
 
         Iterateur iterateurIngredientsPlat = plat.getPlat().creerIterateur();
@@ -90,19 +104,5 @@ public class Chef implements Observateur{
                 }
             }
         }
-
-        /*for (IngredientInventaire ingredientDuPlat : plat.getPlat().getIngredients()) {
-            for (IngredientInventaire ingredientDeInventaire : inventaire.getIngredients()) {
-                if (ingredientDeInventaire.getIngredient().getNom() == ingredientDuPlat.getIngredient().getNom()) {
-                    ingredientDeInventaire.setQuantite(ingredientDeInventaire.getQuantite()-ingredientDuPlat.getQuantite());
-                }
-            }
-        }*/
     }
-
-    public Inventaire getInventaire() {
-        return Inventaire.getInventaire();
-    }
-
-
 }

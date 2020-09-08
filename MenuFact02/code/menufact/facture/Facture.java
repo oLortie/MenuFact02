@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Une facture du systeme Menufact
+ * Une facture du systeme Menufact.
+ * Cette classe fait partie du design pattern Observer.
  * @author Domingo Palao Munoz
  * @version 1.0
  */
@@ -30,16 +31,29 @@ public class Facture implements Observable {
     private final double TPS = 0.05;
     private final double TVQ = 0.095;
 
+    /**
+     * attacher un observateur pour envoyer des notifications
+     * @param observateur observateur à attacher
+     */
     @Override
     public void attacher(Observateur observateur) {
         observateurs.add(observateur);
     }
 
+    /**
+     * détacher un observateur pour arrêter de lui envoyer des notifications
+     * @param observateur observateur à détacher
+     */
     @Override
     public void detacher(Observateur observateur) {
         observateurs.remove(observateurs.indexOf(observateur));
     }
 
+    /**
+     * Notifier tous les observateurs qu'un plat doit être préparé
+     * @param plat
+     * @throws PlatException
+     */
     @Override
     public void notifier(PlatChoisi plat) throws PlatException {
         for (Observateur observateur : observateurs) {

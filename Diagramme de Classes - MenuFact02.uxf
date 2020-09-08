@@ -1124,7 +1124,7 @@ bg=gray</panel_attributes>
     <panel_attributes>IngredientInventaireSolideAdapter
 --
 -ingredientLiquide : IngredientInventaireLiquide
--RAPPORT_SOLIDE_LIQUIDE : int = 2
+-masseVolumique : float
 --
 +IngredientInventaireSolideAdapter(IngredientInventaireLiquide)
 +getQuantite() : int
