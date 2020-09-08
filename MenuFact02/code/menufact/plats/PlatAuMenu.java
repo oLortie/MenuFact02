@@ -67,6 +67,7 @@ public class PlatAuMenu implements Containeur {
                 "code=" + code +
                 ", description='" + description +
                 ", prix=" + prix +
+                ", ingredient=" + lesIngredients +
                 "}";
     }
 

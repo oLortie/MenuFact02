@@ -33,7 +33,7 @@ public class PlatEnfantAdapter extends PlatAuMenu{
                 throw new PlatException(e.getMessage());
             }
 
-            getIngredients().add(nouvelIngredient);
+            ajouterIngredient(nouvelIngredient);
         }
     }
 

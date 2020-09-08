@@ -9,15 +9,13 @@ import menufact.chef.Chef;
 import menufact.facture.exceptions.FactureException;
 import menufact.exceptions.MenuException;
 import menufact.facture.Facture;
+import menufact.plats.*;
 import menufact.plats.Exceptions.PlatException;
-import menufact.plats.PlatAuMenu;
-import menufact.plats.PlatChoisi;
-import menufact.plats.PlatEnfant;
-import menufact.plats.PlatSante;
 
 public class TestMenuFact02 {
 
     public static void main(String[] args) {
+
         ////////////// Déclaration des variables
 
         TestMenuFact02 t = new TestMenuFact02();
@@ -39,6 +37,26 @@ public class TestMenuFact02 {
         PlatEnfant pe3 = new PlatEnfant( 300, "PlatEnfant2", 30, 0.5);
         PlatEnfant pe4 = new PlatEnfant( 400, "PlatEnfant3", 40, 2);
         PlatEnfant pe5 = new PlatEnfant( 500, "PlatEnfant4", 50, 2);
+
+        ///
+        PlatChoisi pc5 = null;
+        PlatEnfantAdapter pea1 = null;
+        Ingredient test = new Laitier("Lait", "Lait de vache");
+        IngredientInventaireLiquide test2 = new IngredientInventaireLiquide(test, 2);
+        IngredientInventaireLiquideAdapter test3 = new IngredientInventaireLiquideAdapter(test2, 1);
+        pe1.ajouterIngredient(test3);
+
+        try
+        {
+            pea1 = new PlatEnfantAdapter(pe1);
+
+            pc5 = new PlatChoisi(pea1, 1);
+        }
+        catch (PlatException pe)
+        {
+            System.out.println(pe.getMessage());
+        }
+        ///
 
         Menu m1 = new Menu("Menu 1 - Plat au Menu");
         Menu m2 = new Menu("Menu 2 - Plat Sante");
@@ -78,7 +96,7 @@ public class TestMenuFact02 {
         IngredientInventaireLiquide ingrInv101 = new IngredientInventaireLiquide(ingr8, 1);
         IngredientInventaire ingrInv102 = new IngredientInventaire(ingr11, 1);
 
-        IngredientInventaireLiquideAdapter adapter6 = new IngredientInventaireLiquideAdapter(ingrInv101, 1);
+        IngredientInventaireLiquideAdapter adapter6 = new IngredientInventaireLiquideAdapter(ingrInv101, 2);
 
         PlatChoisi pc1 = new PlatChoisi(p2, 5);
         PlatChoisi pc2 = new PlatChoisi(ps3, 1);
@@ -109,7 +127,7 @@ public class TestMenuFact02 {
 
         t.test7_AjoutDesIngredientsAuxPlats(p2, ps3, pe4, ingrInv100, adapter6, ingrInv102);
 
-        t.test8_AjoutDesPlatDuClient(f1, pc1, pc2, pc3);
+        t.test8_AjoutDesPlatDuClient(f1, pc1, pc2, pc3, pc5);
 
         t.test9_ChangementEtatPlatCommandes(pc4);
 
@@ -226,7 +244,7 @@ public class TestMenuFact02 {
         pe4.ajouterIngredient(ingr3);
     }
 
-    void test8_AjoutDesPlatDuClient(Facture f1, PlatChoisi pc1, PlatChoisi pc2, PlatChoisi pc3)
+    void test8_AjoutDesPlatDuClient(Facture f1, PlatChoisi pc1, PlatChoisi pc2, PlatChoisi pc3, PlatChoisi pc5)
     {
         System.out.println("TEST8 - AJOUT DES PLATS A LA FACTURE" + "\n");
 
@@ -251,6 +269,15 @@ public class TestMenuFact02 {
         try
         {
             f1.ajoutePlat(pc3);
+        }
+        catch (FactureException | PlatException | IngredientException | InventaireException fe)
+        {
+            System.out.println(fe.getMessage());
+        }
+
+        try
+        {
+            f1.ajoutePlat(pc5);
         }
         catch (FactureException | PlatException | IngredientException | InventaireException fe)
         {
