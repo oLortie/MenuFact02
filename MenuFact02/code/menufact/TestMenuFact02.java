@@ -276,6 +276,9 @@ public class TestMenuFact02 {
 
     void test7_AjoutDesIngredientsAuxPlats(PlatAuMenu p2, PlatSante ps3, PlatEnfant pe4, IngredientInventaire ingr1, IngredientInventaire ingr2, IngredientInventaire ingr3)
     {
+        System.out.println("TEST7 - AJOUT DES INGREDIENTS AUX PLATS" + "\n" +
+                           "--------------------------------------");
+
         p2.ajouterIngredient(ingr1);
         ps3.ajouterIngredient(ingr2);
         pe4.ajouterIngredient(ingr3);
