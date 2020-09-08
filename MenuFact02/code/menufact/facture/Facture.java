@@ -1,5 +1,7 @@
 package menufact.facture;
 
+import ingredients.exceptions.IngredientException;
+import inventaire.exceptions.InventaireException;
 import menufact.Client;
 import menufact.chef.Observable;
 import menufact.chef.Observateur;
@@ -55,7 +57,7 @@ public class Facture implements Observable {
      * @throws PlatException
      */
     @Override
-    public void notifier(PlatChoisi plat) throws PlatException {
+    public void notifier(PlatChoisi plat) throws PlatException, IngredientException, InventaireException {
         for (Observateur observateur : observateurs) {
             observateur.preparerPlatComplet(plat);
         }
@@ -170,7 +172,7 @@ public class Facture implements Observable {
      * @param p un plat choisi
      * @throws FactureException Seulement si la facture est OUVERTE
      */
-    public void ajoutePlat(PlatChoisi p) throws FactureException, PlatException {
+    public void ajoutePlat(PlatChoisi p) throws FactureException, PlatException, IngredientException, InventaireException {
         if (etat.toString() == "OUVERTE") {
             platchoisi.add(p);
             notifier(p);

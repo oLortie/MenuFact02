@@ -1,7 +1,9 @@
 package menufact;
 
 import ingredients.*;
+import ingredients.exceptions.IngredientException;
 import inventaire.Inventaire;
+import inventaire.exceptions.InventaireException;
 import menufact.chef.Chef;
 import menufact.facture.exceptions.FactureException;
 import menufact.exceptions.MenuException;
@@ -292,7 +294,7 @@ public class TestMenuFact02 {
         {
             f1.ajoutePlat(pc1);
         }
-        catch (FactureException | PlatException fe)
+        catch (FactureException | PlatException | IngredientException | InventaireException fe)
         {
             System.out.println(fe.getMessage());
         }
@@ -301,7 +303,7 @@ public class TestMenuFact02 {
         {
             f1.ajoutePlat(pc2);
         }
-        catch (FactureException | PlatException fe)
+        catch (FactureException | PlatException | InventaireException | IngredientException fe)
         {
             System.out.println(fe.getMessage());
         }
@@ -310,7 +312,7 @@ public class TestMenuFact02 {
         {
             f1.ajoutePlat(pc3);
         }
-        catch (FactureException | PlatException fe)
+        catch (FactureException | PlatException | IngredientException | InventaireException fe)
         {
             System.out.println(fe.getMessage());
         }
@@ -320,7 +322,7 @@ public class TestMenuFact02 {
             f1.fermer();
             f1.ajoutePlat(pc1);
         }
-        catch (FactureException | PlatException fe)
+        catch (FactureException | PlatException | IngredientException | InventaireException fe)
         {
             System.out.println(fe.getMessage());
         }
