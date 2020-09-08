@@ -353,14 +353,14 @@ public class TestMenuFact02 {
     {
         System.out.println("TEST9 - CHANGEMENT DETAT DES PLAT COMMANDES" + "\n");
 
-        try
+        /*try
         {
             
         }
         catch()
         {
 
-        }
+        }*/
 
         System.out.println("--------------------------------------");
     }
