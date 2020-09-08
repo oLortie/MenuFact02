@@ -66,11 +66,6 @@ public class Inventaire implements Containeur {
         {
             instanceInventaire = new Inventaire();
         }
-        /*else
-        {
-            System.out.println("L'inventaire existe déjà");
-            //throw new InventaireException("L'inventaire existe déjà");
-        }*/
 
         return instanceInventaire;
     }

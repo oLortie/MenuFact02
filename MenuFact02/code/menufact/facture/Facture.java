@@ -189,7 +189,7 @@ public class Facture implements Observable {
     public String toString() {
         return "Facture{" +
                 "date=" + date +
-                ", description='" + description + '\'' +
+                ", description='" + description + "'" +
                 ", etat=" + etat.toString() +
                 ", platchoisi=" + platchoisi +
                 ", courant=" + courant +
@@ -212,9 +212,9 @@ public class Facture implements Observable {
 
 
         factureGenere =   "Facture generee.\n" +
-                          "Date:" + date + "\n" +
+                          "Date: " + date + "\n" +
                           "Description: " + description + "\n" +
-                          "Client:" + client.getNom() + "\n" +
+                          "Client: " + client.getNom() + "\n" +
                           "Les plats commandes:" + "\n" + lesPlats;
 
         factureGenere += "Seq   Plat         Prix   Quantite\n";
