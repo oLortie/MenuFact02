@@ -51,7 +51,7 @@ public class TestMenuFact03 {
         cremeGlacee.setDescription("Coaticook");
         IngredientInventaire bananeInventaire = new IngredientInventaire(banane, 25);
         IngredientInventaire cremeGlaceeInventaire = new IngredientInventaire(cremeGlacee, 12);
-        IngredientInventaire plat1BananeInventaire = new IngredientInventaire(banane, 50);
+        IngredientInventaire plat1BananeInventaire = new IngredientInventaire(banane, 60);
         IngredientInventaire plat1CremeGlaceeInventaire = new IngredientInventaire(cremeGlacee, 2);
         plat1.ajouterIngredient(plat1BananeInventaire);
         plat1.ajouterIngredient(plat1CremeGlaceeInventaire);
@@ -59,10 +59,10 @@ public class TestMenuFact03 {
         Inventaire.getInventaire().ajouterIngredient(bananeInventaire);
         Inventaire.getInventaire().ajouterIngredient(cremeGlaceeInventaire);
 
-        PlatEnfantAdapter adapter = new PlatEnfantAdapter(plat1);
+        PlatEnfantAdapter adapter = null;
         try {
-            adapter.adapt();
-        } catch (IngredientException e) {
+            adapter = new PlatEnfantAdapter(plat1);
+        } catch (PlatException e) {
             e.printStackTrace();
         }
 

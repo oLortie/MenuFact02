@@ -4,6 +4,7 @@ import Iterateur.Iterateur;
 import ingredients.IngredientInventaire;
 import ingredients.exceptions.IngredientException;
 import inventaire.Inventaire;
+import inventaire.exceptions.InventaireException;
 import menufact.plats.Exceptions.PlatException;
 import menufact.plats.PlatAuMenu;
 import menufact.plats.PlatChoisi;
@@ -41,8 +42,9 @@ public class Chef implements Observateur{
             plat.servir();
         } catch (PlatException e) {
             plat.rendreImpossible();
-            throw new PlatException(e.getMessage());
         } catch (IngredientException e) {
+            plat.rendreImpossible();
+        } catch (InventaireException e) {
             plat.rendreImpossible();
         }
 
@@ -54,7 +56,7 @@ public class Chef implements Observateur{
      * @param plat plat pour lequel on doit vérifier la disponibilité des ingrédients
      * @throws PlatException si il n'y a pas assez d'ingrédients
      */
-    public void verifierIngredients(PlatChoisi plat) throws PlatException {
+    public void verifierIngredients(PlatChoisi plat) throws PlatException, InventaireException {
 
         Iterateur iterateurIngredientsPlat = plat.getPlat().creerIterateur();
         Iterateur iterateurIngredientsInventaire = Inventaire.getInventaire().creerIterateur();
@@ -64,7 +66,7 @@ public class Chef implements Observateur{
             IngredientInventaire ingredientDuPlat = (IngredientInventaire) iterateurIngredientsPlat.next();
 
             if (!ingredientDuPlat.isIn(Inventaire.getInventaire().getIngredients())) {
-                throw new PlatException("Un des ingrédients du plat n'est pas disponible en inventaire!");
+                throw new InventaireException("Un des ingrédients du plat n'est pas disponible en inventaire!");
             }
 
             iterateurIngredientsInventaire = Inventaire.getInventaire().creerIterateur();

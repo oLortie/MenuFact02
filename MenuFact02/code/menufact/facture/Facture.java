@@ -67,12 +67,12 @@ public class Facture implements Observable {
      */
     public void associerClient (Client client) throws FactureException
     {
-        if(etat.toString().equals(FactureEtat.OUVERTE.toString())) {
+        if (etat.toString() == FactureEtat.OUVERTE.toString()) {
             this.client = client;
         }
         else
         {
-            throw new FactureException("Vous ne pouvez pas associer un client a une facture qui nest pas ouverte!");
+            throw new FactureException("Impossible d'associer un client à une facture fermée!");
         }
     }
 
@@ -170,10 +170,11 @@ public class Facture implements Observable {
      * @param p un plat choisi
      * @throws FactureException Seulement si la facture est OUVERTE
      */
-    public void ajoutePlat(PlatChoisi p) throws FactureException
-    {
-        if (etat.toString() == "OUVERTE")
+    public void ajoutePlat(PlatChoisi p) throws FactureException, PlatException {
+        if (etat.toString() == "OUVERTE") {
             platchoisi.add(p);
+            notifier(p);
+        }
         else
             throw new FactureException("On peut ajouter un plat seulement sur une facture OUVERTE.");
     }
